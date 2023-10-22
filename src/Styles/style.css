@@ -124,11 +124,13 @@ main {
 }
 
 
-.time {
+.message .time {
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    font-weight: 500;
 }
+
 
 .favorite {
     color: var(--accent-color);

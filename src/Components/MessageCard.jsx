@@ -5,8 +5,7 @@ export default function MessageCard({ msg }) {
     const dispatch = useDispatch();
     const localTime = (time) => {
         let date = new Date(time);
-        // console.log("Milliseconds = " + date.toString());
-        return date.toString();
+        return date.toString().slice(0, 25);
     }
     return (
         <div className={`message ${msg.read && "active"} ${msg.current && "current"}`} onClick={() => dispatch(handleRead(msg.id))}>

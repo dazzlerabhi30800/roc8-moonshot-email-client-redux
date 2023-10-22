@@ -49,11 +49,14 @@ const emailSlice = createSlice({
 
 
 
+
+
 const store = configureStore({
     reducer: {
         emailSlice: emailSlice.reducer,
     },
 })
+
 
 
 export const { setEmailMessages, handleRead, setReadMessage, handleFavorite } = emailSlice.actions;

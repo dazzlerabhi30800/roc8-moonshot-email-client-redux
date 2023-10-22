@@ -18,7 +18,12 @@ export default function MessageBody() {
             fetchReadItem();
         }
     }, [readMessage.id])
-    console.log(readMessage);
+
+
+    const localTime = (time) => {
+        let date = new Date(time);
+        return date.toString().slice(0, 25);
+    }
 
     return (
         <section className="email-section message-body">
@@ -27,7 +32,7 @@ export default function MessageBody() {
                 <div className="message-info-container">
                     <div className="message-info">
                         <h1>{readMessage?.from.name}</h1>
-                        <p>{readMessage?.date}</p>
+                        <p>{localTime(readMessage?.date)}</p>
                     </div>
                     <button onClick={() => dispatch(handleFavorite(readMessage?.id))} className="btn favorite-btn">
                         {readMessage.favorite ? "Marked as Favorite" : "Mark as Favorite"}
