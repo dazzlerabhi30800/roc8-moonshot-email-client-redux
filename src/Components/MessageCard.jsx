@@ -3,6 +3,11 @@ import { handleRead } from "../../store/Slice";
 
 export default function MessageCard({ msg }) {
     const dispatch = useDispatch();
+    const localTime = (time) => {
+        let date = new Date(time);
+        // console.log("Milliseconds = " + date.toString());
+        return date.toString();
+    }
     return (
         <div className={`message ${msg.read && "active"} ${msg.current && "current"}`} onClick={() => dispatch(handleRead(msg.id))}>
             <div className="profile-image">F</div>
@@ -11,7 +16,7 @@ export default function MessageCard({ msg }) {
                 <p>Subject: <span>{msg.subject}</span></p>
                 <p className="description">{msg.short_description.substring(0, 40)}...</p>
                 <div className="time">
-                    <p>26/02/2020 10:30am</p>
+                    <p>{localTime(msg?.date)}</p>
                     {msg?.favorite &&
                         <small className="favorite">Favorite</small>
                     }

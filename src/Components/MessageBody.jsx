@@ -18,6 +18,7 @@ export default function MessageBody() {
             fetchReadItem();
         }
     }, [readMessage.id])
+    console.log(readMessage);
 
     return (
         <section className="email-section message-body">
@@ -28,7 +29,9 @@ export default function MessageBody() {
                         <h1>{readMessage?.from.name}</h1>
                         <p>{readMessage?.date}</p>
                     </div>
-                    <button onClick={() => dispatch(handleFavorite(readMessage?.id))} className="btn favorite-btn">Mark as favorite</button>
+                    <button onClick={() => dispatch(handleFavorite(readMessage?.id))} className="btn favorite-btn">
+                        {readMessage.favorite ? "Marked as Favorite" : "Mark as Favorite"}
+                    </button>
                 </div>
                 <div className="message-desc" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(readMessage?.body) }}></div>
             </div>
