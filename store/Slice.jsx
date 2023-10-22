@@ -5,11 +5,11 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 const emailSlice = createSlice({
     name: "emailMessages",
     initialState: {
-        emails: [],
+        emailMessages: [],
     },
-    reducer: {
-        setMessages: (state, action) => {
-            state.emails = ["lulla"];
+    reducers: {
+        setEmailMessages: (state, action) => {
+            state.emailMessages = action.payload;
         }
     }
 })
@@ -18,12 +18,12 @@ const emailSlice = createSlice({
 
 const store = configureStore({
     reducer: {
-        emailSlice: emailSlice.reducer
+        emailSlice: emailSlice.reducer,
     },
 })
 
 
-export const { setMessages } = emailSlice.actions;
+export const { setEmailMessages } = emailSlice.actions;
 
 
 export default store;
