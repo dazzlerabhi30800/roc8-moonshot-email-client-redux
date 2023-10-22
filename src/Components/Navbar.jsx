@@ -1,15 +1,15 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 
 export default function Navbar() {
-    const [searchParams] = useSearchParams();
-    const emails = searchParams.get('emails');
+    const location = useLocation();
+    const { pathname } = location;
     return (
         <nav>
             <p>Filter By:</p>
             <div className="filter--wrapper">
-                <Link className={emails === null ? "active" : ""} to="/">Unread</Link>
-                <Link className={emails === "read" ? "active" : ""} to="/?emails=read">Read</Link>
-                <Link className={emails === "favorites" ? "active" : ""} to="/?emails=favorites">Favorites</Link>
+                <Link className={pathname === "/" ? "active" : ""} to="/">Unread</Link>
+                <Link className={pathname === "/reads" ? "active" : ""} to="/reads">Read</Link>
+                <Link className={pathname === "/favorites" ? "active" : ""} to="/favorites">Favorites</Link>
             </div>
         </nav>
     )
