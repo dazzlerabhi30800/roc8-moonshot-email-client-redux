@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setReadMessage } from "../../store/Slice";
+import { handleFavorite, setReadMessage } from "../../store/Slice";
 import DOMPurify from 'dompurify';
 
 export default function MessageBody() {
@@ -12,7 +12,6 @@ export default function MessageBody() {
         if (!response) return;
         dispatch(setReadMessage({ ...readMessage, body: response.body }));
     }
-    console.log(readMessage);
 
     useEffect(() => {
         if (readMessage.id) {
@@ -29,7 +28,7 @@ export default function MessageBody() {
                         <h1>{readMessage?.from.name}</h1>
                         <p>{readMessage?.date}</p>
                     </div>
-                    <button className="btn favorite-btn">Mark as favorite</button>
+                    <button onClick={() => dispatch(handleFavorite(readMessage?.id))} className="btn favorite-btn">Mark as favorite</button>
                 </div>
                 <div className="message-desc" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(readMessage?.body) }}></div>
             </div>

@@ -31,6 +31,15 @@ const emailSlice = createSlice({
         },
         setReadMessage: (state, action) => {
             state.readMessage = action.payload;
+        },
+        handleFavorite: (state, action) => {
+            state.emailMessages = state.emailMessages.map(msg => {
+                if (msg.id === action.payload) {
+                    return { ...msg, favorite: true }
+                }
+                return msg
+            })
+            state.favoriteMessages = state.emailMessages.filter(msg => msg.favorite === true);
         }
     }
 })
@@ -44,7 +53,7 @@ const store = configureStore({
 })
 
 
-export const { setEmailMessages, handleRead, setReadMessage } = emailSlice.actions;
+export const { setEmailMessages, handleRead, setReadMessage, handleFavorite } = emailSlice.actions;
 
 
 export default store;
